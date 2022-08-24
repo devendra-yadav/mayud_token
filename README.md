@@ -1,13 +1,10 @@
-# Sample Hardhat Project
+# MAYUD ERC 20 Token
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This is an ERC 20 Token.
+Name : MAYUD
+Symbol : MYD
+Initial Supply : 100000000000
 
-Try running some of the following tasks:
+This token is mintable.
 
-```shell
-npx hardhat help
-npx hardhat test
-GAS_REPORT=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+

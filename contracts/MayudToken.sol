@@ -22,6 +22,9 @@ contract MayudToken is ERC20, ERC20Burnable, Ownable{
         marketingFeePercentage = 2;
         developmentFeePercentage = 2;
 
+        marketingWallet=0xBc0250F969Ba915b5E1b31054aC6527101b02301;
+        developmentWallet=0x8169c77F3Ee87365C8E908fCF39740083FC80289;
+
     }
 
     /**
@@ -36,7 +39,7 @@ contract MayudToken is ERC20, ERC20Burnable, Ownable{
 
     function transfer(address to, uint256 amount) public override returns (bool) {
         
-         if(_msgSender() != owner()){
+        if(_msgSender() != owner()){
             uint256 marketingFee = (marketingFeePercentage * amount) / 100;
             uint256 developmentFee = (developmentFeePercentage * amount) / 100;
 
