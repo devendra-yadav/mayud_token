@@ -7,12 +7,13 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
+//Deployed at GOERLI : 0x6e54368F215c1964D73dBFD921506A1483b146BF
 contract MayudToken is ERC20, ERC20Burnable, Ownable{
 
     address public marketingWallet;
     address public developmentWallet;
-    uint8 private marketingFeePercentage;
-    uint8 private developmentFeePercentage;
+    uint8 public marketingFeePercentage;
+    uint8 public developmentFeePercentage;
 
 
     constructor() ERC20("Mayud", "MYD") {
