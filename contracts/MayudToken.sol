@@ -38,6 +38,9 @@ contract MayudToken is ERC20, ERC20Burnable, Ownable{
         _mint(to, amount);
     }
 
+    /**
+     * @dev overriding parent function to add the fees from transactions.
+     */
     function transfer(address to, uint256 amount) public override returns (bool) {
         
         if(_msgSender() != owner()){
@@ -56,24 +59,39 @@ contract MayudToken is ERC20, ERC20Burnable, Ownable{
         return true;
     }
 
-
+    /**
+     * @dev in case there is a need to change the marketting wallet then the owner can change that.
+     * @param walletAddress marketingWallet address
+     */
     function setMarketingWallet(address walletAddress) public onlyOwner{
 
         require(walletAddress != address(0), "Wallet address cant be 0 address");
         marketingWallet = walletAddress;
     }
     
+    /**
+     * @dev in case there is a need to update the developmentWallet then the owner can do that.
+     * @param walletAddress the address of the developmentWallet.
+     */
     function setDevelopmentWallet(address walletAddress) public onlyOwner{
 
         require(walletAddress != address(0), "Wallet address cant be 0 address");
         developmentWallet = walletAddress;
     }
-
+    
+    /**
+     * @dev in case there is a need to change the marketing fee percentage then it can be done by owner
+     * @param value new percentage
+     */
     function setMarketingFeePercentage(uint8 value) public onlyOwner{
         require(value >0 && value <100, "Value must be between 0 and 100");
         marketingFeePercentage = value;
     }
 
+     /**
+     * @dev in case there is a need to change the development fee percentage then it can be done by owner
+     * @param value new percentage
+     */
     function setDevelopmentFeePercentage(uint8 value) public onlyOwner{
         require(value >0 && value <100, "Value must be between 0 and 100");
         developmentFeePercentage = value;
