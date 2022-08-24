@@ -71,7 +71,7 @@ describe('MayudToken', () => {
 
         })
 
-        it("should be able to transfer tokens from holder1 to holder2", async ()=> {
+        it("should be able to transfer tokens from holder1 to holder2 with proper fee deductions", async ()=> {
             const {deployer, mayudToken, holder1, holder2, developmentWallet, marketingWallet} = await loadFixture(contractDeployment);
             let deployerBalance = formatEther(await mayudToken.balanceOf(deployer.address));
             console.log(`Deployer Balance Before : ${deployerBalance}`);
@@ -99,8 +99,10 @@ describe('MayudToken', () => {
             console.log(`developmentWallet Balance after : ${developmentWalletBalance}`); 
 
             expect(deployerBalance).to.equal('99999000000.0');
-            //expect(holder1Balance).to.equal('950000.0');
-           // expect(holder2Balance).to.equal('50000.0');
+            expect(holder1Balance).to.equal('950000.0');
+            expect(holder2Balance).to.equal('48000.0');
+            expect(marketingWalletBalance).to.equal('1000.0');
+            expect(developmentWalletBalance).to.equal('1000.0');
 
         })
     })
