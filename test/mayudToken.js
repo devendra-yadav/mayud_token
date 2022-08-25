@@ -105,5 +105,44 @@ describe('MayudToken', () => {
             expect(developmentWalletBalance).to.equal('1000.0');
 
         })
+
+        it("deployer should be able to burn tokens", async ()=>{
+            const {deployer, mayudToken, holder1, holder2} = await loadFixture(contractDeployment);
+
+            let deployerBalance = formatEther(await mayudToken.balanceOf(deployer.address));
+            console.log(`Deployer Balance Before : ${deployerBalance}`);
+
+            await mayudToken.burn(humanReadableTokenAmount(60000000000));
+
+            deployerBalance = formatEther(await mayudToken.balanceOf(deployer.address));
+            console.log(`Deployer Balance After : ${deployerBalance}`);
+
+            expect(deployerBalance).to.be.equal('40000000000.0');
+
+        })
+
+        it("token holders should be able to burn tokens", async ()=>{
+            const {deployer, mayudToken, holder1, holder2} = await loadFixture(contractDeployment);
+
+            let totalSupply = formatEther(await mayudToken.totalSupply());
+            console.log(`Totalsupply Before : ${totalSupply}`);
+
+            await mayudToken.transfer(holder1.address, humanReadableTokenAmount(2000000000));
+
+            let holder1Balance = formatEther(await mayudToken.balanceOf(holder1.address));
+            console.log(`holder1 Balance Before burn : ${holder1Balance}`);
+
+            await mayudToken.connect(holder1).burn(humanReadableTokenAmount(5000000));
+
+            holder1Balance = formatEther(await mayudToken.balanceOf(holder1.address));
+            console.log(`holder1 Balance After burn : ${holder1Balance}`);
+
+            totalSupply = formatEther(await mayudToken.totalSupply());
+            console.log(`totalSupply After : ${totalSupply}`);
+
+            expect(holder1Balance).to.be.equal('1995000000.0');
+            expect(totalSupply).to.be.equal('99995000000.0');
+
+        })
     })
 })

@@ -10,6 +10,7 @@ This token is mintable.
 ## CMDs
     To run the automated tests : `npx hardhat test .\test\mayudToken.js`
     To deploy on the network : `npx hardhat run .\scripts\deploy.js --network goerli`
+    
     Make sure you have ".env" file will following variables set
     ALCHEMY_GEORLI_URL=<alchemy url>
     GOERLI_PRIVATE_KEY=<private key of your metamask wallet>
