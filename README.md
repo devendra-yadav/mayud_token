@@ -7,6 +7,10 @@
 
 This token is mintable.
 
+There is a total of 4% fee for each transaction: -
+1. There is a 2% fee for development purposes.
+2. There is a 2% fee for marketing purposes.
+
 ## CMDs
     To run the automated tests : `npx hardhat test .\test\mayudToken.js`
     To deploy on the network : `npx hardhat run .\scripts\deploy.js --network goerli`
